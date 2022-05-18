@@ -1,0 +1,35 @@
+﻿@model InventoryStorage.Models.Item
+@{
+    ViewData["Title"] = "Смяна на местоположението на предмета";
+}
+<body style="background-color: #FBF8F1; font-family: Verdana, Arial;">
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>Смяна на местоположението на предмета</h1>
+    <form method="post" asp-action="Update">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-12">
+
+                <div class=" form-group row">
+                    <label class="col-2 m-1 form-control" asp-for="Id">Номер</label>
+                    <label class="col-3 m-1 form-control" asp-for="ItemName">Име</label>
+                    <label class="col-3 m-1 form-control" asp-for="Description">Описание</label>
+                    <label class="col-3 m-1 form-control" asp-for="Location">Местоположение</label>
+                </div>
+                <div class=" form-group row">
+                    <input class="col-2  form-control m-1" asp-for="Id" disabled />
+                    <input class="col-3  form-control m-1" asp-for="ItemName" />
+                    <input class="col-3  form-control m-1" asp-for="Description" />
+                    <input class="col-3  form-control m-1" asp-for="Location" />
+                </div>
+                <div class=" form-group row">
+                    <button type="submit" class="col-3 btn btn-success m-1">Запазване</button>
+                    <button asp-action="Index" class="col-3 btn btn-danger m-1">Назад</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<InventoryStorage.Models.ItemHistory>
+@{
+    ViewData["Title"] = "История на предмети";
+}
+<body style="background-color: #FBF8F1; font-family: Verdana, Arial; ">
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1 class="text-primary">Търсене нa предишно местоположение на предмет</h1>
+    <div class="container p-3">
+        <form method="post" asp-controller="History" asp-action="Search">
+            <div class="row">
+                <div class="col-12">
+                    <b>Търсене по:</b>
+                    @Html.RadioButton("searchBy", "Id", true)  Номер
+                    @Html.RadioButton("searchBy", "Location")  Сегашна локация
+                    <div class=" form-group row">
+                        <input type="search" name="search" />
+
+                    </div>
+                    <div class="form-group row">
+                        <input type="submit" value="Търсене" class="btn m-1" style="background-color: #24A19C;color:whitesmoke;" asp-controller="History" asp-action="Search" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered borthead-dark table-striped table-hover" style="width:100%;
+                background-color: aliceblue">
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Име</th>
+                        <th>Описание</th>
+                        <th>Сегашно местоположение</th>
+                        <th>Предишно местоположение</th>
+                        <th>Дата на преместване</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td width="10%">@item.Id</td>
+                            <td width="18%">@item.ItemName</td>
+                            <td width="18%">@item.Description</td>
+                            <td width="12%">@item.Location</td>
+                            <td width="10%">@item.OldLocation</td>
+                            <td width="15%">@item.DateTimeWhenChanged</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Няма въведени предмети!</p>
+        }
+    </div>
+</body>
